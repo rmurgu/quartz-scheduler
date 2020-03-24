@@ -19,7 +19,11 @@ public class QuartzApp {
         scheduler.start();
 
         JobDetail jobDetail = newJob(BankTransaction.class)
-                .withIdentity("money-transfer")
+                .withIdentity("money-transfer1", "group1")
+                .usingJobData("from", "Donald J Trump")
+                .usingJobData("to", "Vladimir Putin")
+                .usingJobData("currency", "$")
+                .usingJobData("sum", 1000.97)
                 .build();
 
         Trigger trigger = newTrigger()
